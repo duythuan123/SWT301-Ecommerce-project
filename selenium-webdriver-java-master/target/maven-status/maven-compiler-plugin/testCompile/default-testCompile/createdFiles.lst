@@ -1,0 +1,17 @@
+test\MouseHoverHandle.class
+model\pages\LoginPageSimple.class
+test\JSAlertHandle.class
+test\HandleCheckboxes.class
+test\IFrameHandle.class
+element\ElementController.class
+test\loginForm.class
+driver\driverFactory.class
+test\HandleDropdown.class
+test\JSExecutor.class
+test\MultipleWindowsHandle.class
+test\RightClickHandle.class
+test\LaunchBrowser.class
+test\DnDHandle.class
+test\DynamicContentHandle.class
+test\TestLoginPageSimple.class
+test\UrlPageTitleHandle.class
