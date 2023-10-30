@@ -56,9 +56,9 @@ public class tc02 {
             Thread.sleep(3000);
 
             // Step 7. This will take screenshot after success
-            scc = (scc + 1);
+            scc = (scc + 2);
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String png = ("D:\\selenium-webdriver-java-master\\src\\test\\resources\\testcase" + scc + ".png");
+            String png = ("D:\\SWT301\\SWT301-Ecommerce-project\\selenium-webdriver-java-master\\src\\test\\resources\\testcase" + scc + ".png");
             FileUtils.copyFile(scrFile, new File(png));
             
         } catch (Exception e) {
