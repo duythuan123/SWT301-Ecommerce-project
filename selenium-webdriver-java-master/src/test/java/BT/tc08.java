@@ -9,6 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import POM.checkOutPage;
@@ -25,7 +26,7 @@ public class tc08 {
         registerPage registerPage = new registerPage(driver);
         loginPage loginPage = new loginPage(driver);
         checkOutPage checkOutPage = new checkOutPage(driver);
-
+        StringBuffer verificationError = new StringBuffer();
         // Init input value
         // Values for LoginPage
         String email_address = "thuan123@gmail.com";
@@ -88,12 +89,12 @@ public class tc08 {
             WebElement changedProductPrice = driver.findElement(By.cssSelector("strong span[class='price']"));
             String TextChangedProductPrice = changedProductPrice.getText();
             System.out.println(TextChangedProductPrice);
-            if (!TextChangedProductPrice.equals(TextBaseProductPrice)) {
-                System.out.println("Grand Total is changed with the price " + TextChangedProductPrice);
-            } else {
-                System.out.println("Grand Total is not changed");
-            }
 
+try {
+            AssertJUnit.assertEquals(TextChangedProductPrice, TextBaseProductPrice);
+        } catch (Error e) {
+            verificationError.append(e.toString());
+        }
             // Step 6. Complete Billing & Shipping Information
             // Click "Proceed to Checkout"
             checkOutPage.clickCheckOutButton();
@@ -104,7 +105,7 @@ public class tc08 {
                 driver.switchTo().window(handle);
             }
             Thread.sleep(0);
-
+Thread.sleep(2000);
             // Enter Billing Information, and click Continue
             // Choose new address dropdown
             WebElement billingDropdownElement = driver
@@ -144,7 +145,7 @@ public class tc08 {
             // Enter Shipping Information, and click Continue
             // Choose new address dropdown
             WebElement shippingDropdownElement = driver
-                    .findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/ol[1]/li[2]/div[2]/form[1]/ul[1]/li[1]/div[1]/select[1]"));
+                    .findElement(By.xpath("//select[@id='shipping-address-select']"));
             Select shippingDropdownOption = new Select(shippingDropdownElement);
             shippingDropdownOption.selectByVisibleText("New Address");
             //input values
@@ -153,7 +154,7 @@ public class tc08 {
             checkOutPage.enterShippingAddress(address);
             checkOutPage.enterShippingCity(city);
             checkOutPage.enterShippingTelephone(telephone);
-            driver.findElement(By.xpath(".//*[@id='shipping-buttons-container']/button")).click();
+            driver.findElement(By.xpath("//button[@onclick='shipping.save()']//span//span[contains(text(),'Continue')]")).click();
             // debug
             Thread.sleep(0);
             // switching to new window
@@ -161,7 +162,7 @@ public class tc08 {
                 driver.switchTo().window(handle);
             }
             Thread.sleep(2000);
-
+Thread.sleep(2000);
             // In Shipping Method, Click Continue
             driver.findElement(By.xpath("//button[@onclick='shippingMethod.save()']//span//span[contains(text(),'Continue')]")).click();
             // debug
@@ -188,7 +189,7 @@ public class tc08 {
             Thread.sleep(2000);
 
             // Click 'PLACE ORDER' button
-            driver.findElement(By.xpath("//span[contains(text(),'Place Order')]")).click();
+            driver.findElement(By.xpath("//button[@title='Place Order']")).click();
             // debug
             Thread.sleep(0);
             // switching to new window
@@ -215,7 +216,7 @@ public class tc08 {
             System.out.println("*** Your order number is:  " + orderNum);
 
             // this will take screenshot after success
-            scc = (scc + 7);
+            scc = (scc + 8);
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             String png = ("D:\\SWT301\\SWT301-Ecommerce-project\\selenium-webdriver-java-master\\src\\test\\resources\\testcase"
                     + scc + ".png");
