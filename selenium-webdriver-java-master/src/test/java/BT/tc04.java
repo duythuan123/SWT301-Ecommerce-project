@@ -30,7 +30,7 @@ public class tc04 {
         Thread.sleep(2000);
 
         // Step 3. In mobile products list , click on �Add To Compare� for 2 mobiles (Sony Xperia & Iphone)
-        driver.findElement(By.xpath("//li[2]//div[1]//div[3]//ul[1]//li[2]//a[1]")).click();
+        driver.findElement(By.xpath("//li[1]//div[1]//div[3]//ul[1]//li[2]//a[1]")).click();
         driver.findElement(By.xpath("//li[3]//div[1]//div[3]//ul[1]//li[2]//a[1]")).click();
         //for debug only
         Thread.sleep(3000);

@@ -22,7 +22,7 @@ public class tc05 {
         registerPage registerPage = new registerPage(driver);
         String firstName = "pham";
         String lastName = "thuan";
-        String email_address = "thuan123@gmail.com";
+        String email_address = "thuan12345@gmail.com";
         String password = "thuan123";
         String confirmPassword = "thuan123";
 
