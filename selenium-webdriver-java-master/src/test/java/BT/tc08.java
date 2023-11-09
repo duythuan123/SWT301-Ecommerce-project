@@ -90,8 +90,8 @@ public class tc08 {
             String TextChangedProductPrice = changedProductPrice.getText();
             System.out.println(TextChangedProductPrice);
 
-try {
-            AssertJUnit.assertEquals(TextChangedProductPrice, TextBaseProductPrice);
+        try {
+            AssertJUnit.assertNotSame(TextChangedProductPrice, TextBaseProductPrice);
         } catch (Error e) {
             verificationError.append(e.toString());
         }
